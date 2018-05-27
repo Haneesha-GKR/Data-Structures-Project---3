@@ -1,0 +1,79 @@
+ public class DisjSets { 
+ Public static void main(String [] args)
+
+ public DisjSets( int numElements ) 
+	{ 
+		public DisjSets( int numElements ) 
+		{ 
+			 s = new int [ numElements ]; 
+			 for( int i = 0; i < s.length; i++ ) 
+			s[ i ] = -1; 
+ 		}
+	 } 
+
+ public void union( int root1, int root2 ) 
+ 	{
+		 public void union( int root1, int root2 ) 
+		{ 
+			s[ root2 ] = root1; 
+		}
+		 public void union( int root1, int root2 ) 
+		{ 
+			 if( s[ root2 ] < s[ root1 ] ) // root2 is deeper 
+			 s[ root1 ] = root2; // Make root2 new root 
+				else 
+			 { 
+				 if( s[ root1 ] == s[ root2 ] ) 
+				 s[ root1 ]--; // Update height if same 
+				 s[ root2 ] = root1; // Make root1 new root 
+			} 
+		 } 
+	 }
+ 
+ public int find( int x ) 
+	{ 
+		public int find( int x ) 
+		{
+			 if( s[ x ] < 0 ) 
+				return x; 
+			else 
+				return find( s[ x ] ); 
+		 }
+		 public int find( int x ) 
+			{ 
+				 if( s[ x ] < 0 ) 
+					 return x; 
+				else 
+					return s[ x ] = find( s[ x ] ); 
+			 } 
+	 } 
+
+ private int [ ] s; 
+ } 
+
+ Maze createRandomMaze(int rows, int columns) 
+	{  
+           Maze maze = new Maze(rows, columns);  
+
+           // create all walls  
+           List<Wall> walls = maze.getAllInnerWalls();  
+
+           // remove all the walls you can  
+           DisjointSet diset = new DisjointSet(rows*columns);  
+
+           while (diset.size() > 1)
+	 {  
+                int wallIndex = random.nextInt(walls.size());  
+                int cell1 = walls.get(wallIndex).cell1;  
+                int cell2 = walls.get(wallIndex).cell2; 
+ 
+                if (diset.find(cell1) != diset.find(cell2))
+	    {  
+                     // we can remove the wall  
+                     maze.removeWall(walls.get(wallIndex));  
+                     diset.join(cell1, cell2);  
+             }  
+                walls.remove(wallIndex);  
+        }  
+           return maze;  
+      }  
